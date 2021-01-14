@@ -12,7 +12,7 @@ public class CharacterMovement : MonoBehaviour
     public float jumpforce;
     [HideInInspector] public bool isRun;
     public float time_delayJump;
-    [SerializeField] private float currentspeed;
+    private float currentspeed;
 
     [Header("Control Animation Movement System")]
     public CharacterAnimator characterAnimator;
@@ -41,6 +41,7 @@ public class CharacterMovement : MonoBehaviour
             MoveCharacter(Input.GetAxis("Vertical"));
         }
         RotationCharacter(Input.GetAxis("Horizontal"));
+        RotationCharacter(Input.GetAxis("Mouse X"));
 
     }
 
@@ -54,6 +55,7 @@ public class CharacterMovement : MonoBehaviour
         }
         transform.Translate(0, 0, speed_temp);
         currentspeed = speed_temp;
+
         if (characterSensor.isGround())
         {
             characterAnimator.MovementAnim(speed_temp, isRun);
